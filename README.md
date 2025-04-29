@@ -29,9 +29,9 @@ Os arquivos estão localizados na raiz do projeto, nomeados de ex01.js até ex15
 
 Para executar qualquer exercício, use o comando:
 
-    ```bash
-    node ex01.js
-    ```
+```bash
+node ex01.js
+```
 
 Substitua ex01.js pelo nome do exercício que deseja testar, como ex05.js, ex12.js, etc.
 🧾 Estrutura do projeto

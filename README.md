@@ -23,7 +23,7 @@ Antes de começar, você precisa ter o [Node.js](https://nodejs.org/) instalado 
 
 🚨 Este projeto utiliza apenas a biblioteca prompt-sync para permitir entrada de dados pelo terminal.
 
-▶️ Como executar os exercícios
+## ▶️ Como executar os exercícios
 
 Os arquivos estão localizados na raiz do projeto, nomeados de ex01.js até ex15.js.
 
@@ -33,8 +33,9 @@ Para executar qualquer exercício, use o comando:
 node ex01.js
 ```
 
-Substitua ex01.js pelo nome do exercício que deseja testar, como ex05.js, ex12.js, etc.
-🧾 Estrutura do projeto
+⚠️ Substitua ex01.js pelo nome do exercício que deseja testar, como ex05.js, ex12.js, etc.
+
+## 🧾 Estrutura do projeto
 
 ```bash
 /
@@ -46,7 +47,7 @@ Substitua ex01.js pelo nome do exercício que deseja testar, como ex05.js, ex12.
 └── README.md
 ```
 
-✅ Observações
+## ✅ Observações
 
 Certifique-se de estar no diretório correto ao rodar os arquivos.
 

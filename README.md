@@ -18,7 +18,7 @@ Antes de começar, você precisa ter o [Node.js](https://nodejs.org/) instalado 
 2. Instale a única dependência necessária:
 
     ```bash
-    npm install prompt-sync
+    npm install
     ```
 
 🚨 Este projeto utiliza apenas a biblioteca prompt-sync para permitir entrada de dados pelo terminal.

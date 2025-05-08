@@ -2,25 +2,53 @@
 //adolescente, adulto, idoso) com base no valor fornecido, utilizando uma estrutura de
 //controle if-else.
 
-function verifyAge(age) {
-    if (isNaN(age) || age < 0 || !Number.isInteger(age)) {
-        console.log('Favor digitar um número inteiro válido.');
-        return;
-    }
-    if (age >= 60) {
-        console.log(`É idoso.`);
-    } else if (age >= 18) {
-        console.log(`É adulto`);
-    } else if (age >= 12 && age < 18) {
-        console.log(`É adolescente`);
-    } else {
-        console.log(`É criança`);
+const prompt = require('prompt-sync')()
+
+const { shouldContinue } = require('./askToContinue')
+
+function getValidnumber(message) {
+    while (true) {
+        const input = prompt(message)
+        const number = Number(input)
+
+        if (!isNaN(number) && number > 0 && number <= 120 && Number.isInteger(number)) {
+            return number
+        }
+        console.log('\nPor favor, digite um idade válida.')
     }
 }
 
-verifyAge(9);
-verifyAge(17);
-verifyAge(33);
-verifyAge(62);
-verifyAge('a');
-verifyAge(1.7);
+function requestUserInput() {
+    const age = getValidnumber('Digite sua idade: ')
+
+    return age
+}
+
+function verifyAge(age) {
+    if (age >= 60) {
+        return '\nÉ idoso!'
+    } else if (age >= 18) {
+        return '\nÉ adulto!'
+    } else if (age >= 12 && age < 18) {
+        return '\nÉ adolescente!'
+    } else {
+        return '\nÉ criança!'
+    }
+}
+
+function main() {
+    let continueProgram = true
+
+    while (continueProgram) {
+        const age = requestUserInput()
+        const ageCategory = verifyAge(age)
+
+        console.log(ageCategory)
+
+        console.log('\nDeseja consultar outra idade? \n')
+
+        continueProgram = shouldContinue()
+    }
+}
+
+main()

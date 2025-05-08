@@ -6,37 +6,63 @@
 // Triângulo escaleno: possui todos os lados diferentes (A<>B e B <> C)
 // Triângulo eqüilátero: possui todos os lados iguais (A=B e B=C)
 
-const prompt = require('prompt-sync')();
+const prompt = require('prompt-sync')()
+const { shouldContinue } = require('./askToContinue.js')
 
-function getTriangleType() {
-    let lados = [];
-    for (let i = 0; i < 3; i++) {
-        while (true) {
-            let entrada = prompt(`Digite o ${i + 1}º valor: `);
-            let valor = Number(entrada);
+function getValidNumber(message) {
+    while (true) {
+        const input = prompt(message)
+        const number = Number(input)
 
-            if (isNaN(valor) || valor <= 0 || !Number.isInteger(valor)) {
-                console.log('Por favor, digite um número inteiro e positivo.');
-                continue;
-            } else {
-                lados.push(valor);
-                break;
-            }
+        if (!isNaN(number) && number > 0 && Number.isInteger(number)) {
+            return number
         }
-    }
-    const [a, b, c] = lados;
-
-    if (a + b > c && a + c > b && b + c > a) {
-        if (a === b && b === c) {
-            console.log('Triângulo equilátero');
-        } else if (a === b || a === c || b === c) {
-            console.log('Triângulo isósceles');
-        } else {
-            console.log('Triângulo escaleno');
-        }
-    } else {
-        console.log('Não formam um triângulo.');
+        console.log('\nPor favor, digite um número inteiro e positivo.')
     }
 }
 
-getTriangleType();
+function getUserInput() {
+    let triangleSides = []
+    for (let i = 0; i < 3; i++) {
+        const side = getValidNumber(`Digite o ${i + 1}º valor: `)
+        triangleSides.push(side)
+    }
+
+    return triangleSides
+}
+
+function getTriangleType(a, b, c) {
+    if (a + b > c && a + c > b && b + c > a) {
+        if (a === b && b === c) {
+            return 'EQUILÁTERO'
+        } else if (a === b || a === c || b === c) {
+            return 'ISÓSCELES'
+        } else {
+            return 'ESCALENO'
+        }
+    } else {
+        return 'Não formam um triângulo'
+    }
+}
+
+function printResult(a, b, c, triangleType) {
+    const validTypes = ['EQUILÁTERO', 'ISÓSCELES', 'ESCALENO']
+    if (validTypes.includes(triangleType)) {
+        console.log(`Os valores: ${a}, ${b} e ${c} formam um triângulo ${triangleType}!\n`)
+    } else {
+        console.log(`Os valores: ${a}, ${b} e ${c} não formam um triângulo!\n`)
+    }
+}
+
+function main() {
+    let continueProgram = true
+
+    while (continueProgram) {
+        const [a, b, c] = getUserInput()
+        const triangleType = getTriangleType(a, b, c)
+        printResult(a, b, c, triangleType)
+        continueProgram = shouldContinue()
+    }
+}
+
+main()
